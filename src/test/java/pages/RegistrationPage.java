@@ -11,11 +11,14 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 public class RegistrationPage {
 
     private SelenideElement firstNameInput = $("#firstName"),
-            lastNameInput = $("#LastName"),
-            addressInput = $("#currentAddress"),
+            lastNameInput = $("#lastName"),
+            currentAddress = $("#currentAddress"),
             emailInput = $("#userEmail"),
             genderWrapper = $("#genderWrapper"),
-            userNumberInput = $("#userNumber")
+            userNumberInput = $("#userNumber"),
+            subjectInput =  $("#subjectsInput"),
+            uploadPicture = $("#uploadPicture"),
+            subjectOption = $("#react-select-2-option-0")
                     ;
 
     public RegistrationPage openPage() {
@@ -33,16 +36,17 @@ public class RegistrationPage {
 
         return this;
     }
-    public RegistrationPage setLastNameInput(String value) {
+    public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
 
         return this;
     }
-    public RegistrationPage setAddressInput(String value) {
-        addressInput.setValue(value);
+    public RegistrationPage setAddress(String value) {
+        currentAddress.setValue(value);
+
         return this;
     }
-    public RegistrationPage setEmailInput (String value) {
+    public RegistrationPage setEmailInput(String value) {
         emailInput.setValue(value);
         return this;
     }
@@ -54,7 +58,21 @@ public class RegistrationPage {
         userNumberInput.setValue(value);
         return this;
     }
-    public RegistrationPage setBirstDay(String day, String month, String year) {
+    public RegistrationPage setSubject(String value) {
+        subjectInput.setValue(value);
+        subjectOption.click();
+        return this;
+    }
+    public RegistrationPage setHobby(String value) {
+        $(byText(value)).click();
+        return this;
+    }
+    public RegistrationPage setPicture(String path) {
+        uploadPicture.uploadFromClasspath(path);
+        return this;
+    }
+
+    public RegistrationPage setBirthDay(String day, String month, String year) {
         new CalendarComponent().setDate(day, month, year);
         $("#dateOfBirthInput").scrollTo().click();
         $(".react-datepicker__month-select").selectOption("December");//только если объект имеет тэг select и тэг option
@@ -67,4 +85,6 @@ public class RegistrationPage {
 
     public void checkResult(String fullName, String artyomChurkin) {
     }
+
+
 }

@@ -1,14 +1,27 @@
 
+//import com.codeborne.selenide.Configuration;
+//import org.junit.jupiter.api.BeforeAll;
+//import org.junit.jupiter.api.Test;
+//import pages.RegistrationPage;
+//
+//import java.util.concurrent.StructuredTaskScope;
+//
+//import static com.codeborne.selenide.Condition.*;
+//import static com.codeborne.selenide.Selectors.byText;
+//import static com.codeborne.selenide.Selenide.*;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import pages.components.ModalComponent;
 
 import java.util.concurrent.StructuredTaskScope;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static java.lang.Thread.sleep;
 
 public class RegistrationTestWithPageObjects {
 
@@ -24,16 +37,13 @@ public class RegistrationTestWithPageObjects {
 
     @Test
     void fillFormTest() {
-        registrationPage.openPage();
-
-        registrationPage().open()
+        registrationPage.openPage()
                 .setFirstName("Artyom")
                 .setLastName("Churkin")
-                .setAdress("Svobody 78")
-                .setEmail("a.churkin@informer.com")
+                .setEmailInput("a.churkin@informer.com")
                 .setGender("Male")
                 .setUserNumber("89201171319")
-                .setBirstDay("03", "Dec", "1989")
+                .setBirthDay("03", "Dec", "1989")
                 .setSubject("Physics")
                 .setHobby("Music")
                 .setPicture("123.png")
