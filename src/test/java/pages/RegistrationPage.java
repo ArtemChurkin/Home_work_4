@@ -5,8 +5,8 @@ import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
 
@@ -19,7 +19,11 @@ public class RegistrationPage {
                     ;
 
     public RegistrationPage openPage() {
-        open("/automation-practice-form");
+        open("/");
+        executeJavaScript("document.getElementById('fixedban')?.remove();");
+        executeJavaScript("document.querySelector('footer')?.remove();");
+        $(byText("Forms")).scrollTo().click();
+        $(byText("Practice Form")).click();
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
 
         return this;
