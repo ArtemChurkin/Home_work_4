@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxPage {
@@ -18,9 +19,14 @@ public class TextBoxPage {
 
     public TextBoxPage openPage() {
         open("/text-box");
-        header.shouldHave(text("Text Box"));
-        executeJavaScript("$('footer').remove();");
-        executeJavaScript("$('#fixedban').remove();");
+        //header.shouldHave(text("Text Box"));
+
+        open("/");
+        executeJavaScript("document.getElementById('fixedban')?.remove();");
+        executeJavaScript("document.querySelector('footer')?.remove();");
+        $(byText("Elements")).scrollTo().click();
+        $(byText("Text Box")).click();
+
         return this;
     }
 

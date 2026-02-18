@@ -1,19 +1,30 @@
+import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
 
 public class TextBoxTests {
+
+    @BeforeAll
+    static void setupSelenideEnv() {
+        Configuration.browserSize = "1920x1080";
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.timeout = 5000;
+    }
+
     TextBoxPage textBoxPage = new TextBoxPage();
     @Test
     void fillFormTest() {
         textBoxPage.openPage()
-                .setUserName("Alex")
-                .setUserEmail("alex@cooller.ru")
-                .setUserCurrentAddress("Moscow")
-                .setUserPermanentAddress("Kurovskoe")
+                .setUserName("Artyom")
+                .setUserEmail("a.churkin@informer.com")
+                .setUserCurrentAddress("Svobody 78")
+                .setUserPermanentAddress("Yaroslavl")
                 .submitForm()
-                .checkResult("name", "Alex")
-                .checkResult("email", "alex@cooller.ru")
-                .checkResult("currentAddress", "Moscow")
-                .checkResult("permanentAddress", "Kurovskoe");
+                .checkResult("name", "Artyom")
+                .checkResult("email", "a.churkin@informer.com")
+                .checkResult("currentAddress", "Svobody 78")
+                .checkResult("permanentAddress", "Yaroslavl");
     }
 }

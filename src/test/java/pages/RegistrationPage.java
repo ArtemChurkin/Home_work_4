@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
@@ -14,12 +15,16 @@ public class RegistrationPage {
             lastNameInput = $("#lastName"),
             currentAddress = $("#currentAddress"),
             emailInput = $("#userEmail"),
-            genderWrapper = $("#genderWrapper"),
+            genderWrapper = $("#genterWrapper"),
             userNumberInput = $("#userNumber"),
             subjectInput =  $("#subjectsInput"),
             uploadPicture = $("#uploadPicture"),
-            subjectOption = $("#react-select-2-option-0")
-                    ;
+            subjectOption = $("#react-select-2-option-0"),
+            stateInput = $("#state"),
+            cityInput  = $("#city"),
+            submitButton = $("#submit");
+
+    CalendarComponent calenderComponent = new CalendarComponent();
 
     public RegistrationPage openPage() {
         open("/");
@@ -69,6 +74,24 @@ public class RegistrationPage {
     }
     public RegistrationPage setPicture(String path) {
         uploadPicture.uploadFromClasspath(path);
+        return this;
+    }
+    public  RegistrationPage setState( String value) {
+        stateInput.click();
+        $(byText(value)).click();
+        return this;
+    }
+    public  RegistrationPage setCity( String value) {
+        cityInput.click();
+        $(byText(value)).click();
+        return this;
+    }
+    public RegistrationPage submitForm() {
+        submitButton.click();
+        return this;
+    }
+    public RegistrationPage checkValidation() {
+        $(".was-validated").shouldBe(visible);
         return this;
     }
 
