@@ -25,7 +25,7 @@ public class RegistrationPage {
             cityInput  = $("#city"),
             submitButton = $("#submit");
 
-    CalendarComponent calenderComponent = new CalendarComponent();
+    CalendarComponent calendarComponent = new CalendarComponent();
 
     public RegistrationPage openPage() {
         open("/");
@@ -101,9 +101,6 @@ public class RegistrationPage {
         $(".was-validated").shouldBe(visible);
         return this;
     }
-
-
-
 
     public void checkResult(String fullName, String artyomChurkin) {
     }

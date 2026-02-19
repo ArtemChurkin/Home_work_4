@@ -46,7 +46,7 @@ public class RegistrationTestWithPageObjects {
                 .setEmailInput("a.churkin@informer.com")
                 .setGender("Male")
                 .setUserNumber("8920117131")
-                .setBirthDay("03", "Dec", "1989")
+                .setBirthDay("03", "December", "1989")
                 .setSubject("Physics")
                 .setHobby("Music")
                 .setPicture("img/123.PNG")
