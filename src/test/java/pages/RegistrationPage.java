@@ -17,6 +17,7 @@ public class RegistrationPage {
             emailInput = $("#userEmail"),
             genderWrapper = $("#genterWrapper"),
             userNumberInput = $("#userNumber"),
+            dateOfBirthInput = $("#dateOfBirthInput"),
             subjectInput =  $("#subjectsInput"),
             uploadPicture = $("#uploadPicture"),
             subjectOption = $("#react-select-2-option-0"),
@@ -63,6 +64,12 @@ public class RegistrationPage {
         userNumberInput.setValue(value);
         return this;
     }
+    public RegistrationPage setBirthDay(String day, String month, String year) {
+        dateOfBirthInput.click();
+        calendarComponent.setDate(day, month, year);
+        return this;
+    }
+
     public RegistrationPage setSubject(String value) {
         subjectInput.setValue(value);
         subjectOption.click();
@@ -95,15 +102,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setBirthDay(String day, String month, String year) {
-        new CalendarComponent().setDate(day, month, year);
-        $("#dateOfBirthInput").scrollTo().click();
-        $(".react-datepicker__month-select").selectOption("December");//только если объект имеет тэг select и тэг option
-        $(".react-datepicker__year-select").selectOption("1989");
-        $(".react-datepicker__day.react-datepicker__day--003:not(.react-datepicker__day--outside-month)").click(); ;
 
-        return this;
-    }
 
 
     public void checkResult(String fullName, String artyomChurkin) {
